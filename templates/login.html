@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Bookmark Vault</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="auth-body">
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <p class="tag">SMART BOOKMARK MANAGER</p>
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Save, organize, and manage your favorite links in one place.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('login') }}" method="post" class="auth-form">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" name="fname" placeholder="Enter your username" required>
+                </div>
+
+                <button type="submit" class="primary-btn full-btn">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

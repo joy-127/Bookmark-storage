@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bookmark</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="auth-body">
+    <div class="bg-blur bg-blur-1"></div>
+    <div class="bg-blur bg-blur-2"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <p class="tag">NEW BOOKMARK</p>
+            <h1>Add Bookmark</h1>
+            <p class="subtitle">Save your important links with a clean title and URL.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('insert') }}" method="post" class="auth-form">
+                <div class="input-group">
+                    <label>Bookmark Title</label>
+                    <input type="text" name="link_n" placeholder="Enter bookmark title" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Bookmark URL</label>
+                    <input type="url" name="link" placeholder="https://example.com" required>
+                </div>
+
+                <button type="submit" class="primary-btn full-btn">Save Bookmark</button>
+            </form>
+
+            <a href="{{ url_for('bookmarks') }}" class="back-link">← Back to Bookmarks</a>
+        </div>
+    </div>
+</body>
+</html>
